@@ -10,9 +10,10 @@ public class JButton_All_SetEnabled_ActoinLisnter implements ActionListener {
 	static int DEFAULT_FONT_SIZE ;
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		GoToFowardAndBackWard.Save_previous_data();
 		JMenuItem item = (JMenuItem) e.getSource();
 		int len = Main.button.length;
-
+		
 		if (Main.chButton_func[0] == item) {
 			for (int i = 0; i < len; i++) {
 					Main.button[i].setText("");

@@ -19,6 +19,8 @@ public class JButton_MouseListner extends MouseAdapter implements MouseMotionLis
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.getClickCount() == 2) {
+			GoToFowardAndBackWard.Save_previous_data();
+			
 			JButton Enabled_Button = (JButton) e.getSource();
 			if (!e.isMetaDown() && Enabled_Button.getBackground() != Color.pink) { // ÁÂÅ¬¸¯ ´õºí
 				if (Enabled_Button.isEnabled()) {
@@ -76,10 +78,13 @@ public class JButton_MouseListner extends MouseAdapter implements MouseMotionLis
 				&& (arg0.getSource()) instanceof JButton) {
 			movedButton = (JButton) (arg0.getSource());
 			if (!Enabled_Button_List.contains(movedButton)) {
+				GoToFowardAndBackWard.Save_previous_data();
+				
 				String t_text = movedButton.getText();
 
 				draggedButton.setText(t_text);
 				movedButton.setText(draggedButtonText);
+				
 			}
 		}
 		isCalledDraggedMethod = false;

@@ -35,7 +35,7 @@ public class Student_TextField_Frame extends JFrame implements Serializable {
 
 		for (int i = 0; i < total_student; i++) {
 			label[i] = new JLabel(String.valueOf(i + 1) + "¹ø", JLabel.LEFT);
-			textField[i] = new JTextField(5);
+			textField[i] = new JTextField(3);
 		}
 		for (int i = 0; i < total_student; i++) {
 			add(label[i]);

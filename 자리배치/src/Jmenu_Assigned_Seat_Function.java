@@ -3,16 +3,13 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Jmenu_Assigned_Seat_Function {
-	static int font_size; // 공유하는 폰트 크기 정적 변수
+	static int font_size = 20; // 공유하는 폰트 크기 정적 변수
 	static boolean isCanFixed ;
 
 	public void Assigend_Seat() {
-		
 		int i;
 		int cnt = 0;
 		int len = Main.button.length;
@@ -55,6 +52,7 @@ public class Jmenu_Assigned_Seat_Function {
 		}      
 
 		
+		GoToFowardAndBackWard.Save_previous_data();
 		cnt = 0;
 		
 		for(i=0; i<len; i++)
@@ -148,7 +146,5 @@ public class Jmenu_Assigned_Seat_Function {
 			isCanFixed = true;
 		else 
 			isCanFixed = false;
-		
-//		new Joke().joking();
 	}
 }

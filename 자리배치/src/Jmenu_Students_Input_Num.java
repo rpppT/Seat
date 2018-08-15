@@ -1,7 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -14,6 +17,7 @@ public class Jmenu_Students_Input_Num  extends JFrame{
 	
 	public static final long serialVersionUID = 1111111111111111111L;
 	
+	final static JButton completeInput = new JButton("Click!");
 	final static JLabel label = new JLabel("총 인원");
 	final static JList<Integer> list = new JList<>();
 	final static JScrollPane scroll = new JScrollPane(list);
@@ -40,6 +44,18 @@ public class Jmenu_Students_Input_Num  extends JFrame{
 			
 		   s_input = this;
 		   
+		   completeInput.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Jmenu_Students_Input_Num.total = (int)list.getSelectedValue();
+				Jmenu_StudentsFrame.button[1].setEnabled(true);
+				Jmenu_StudentsFrame.dataFrame.revalidate();
+				Jmenu_StudentsFrame.dataFrame.repaint();
+				Jmenu_Students_Input_Num.s_input.dispose();
+			}
+		});
+		   add(completeInput,BorderLayout.SOUTH);
 		   scroll.setViewportView(list);
            scroll.setBorder(border); //경계 설정
            scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //가로바정책
@@ -47,6 +63,7 @@ public class Jmenu_Students_Input_Num  extends JFrame{
            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
            list.setListData(population);
            list.addMouseListener(new Jmenu_StudentsFrame_MouseListner());
+           
 
            
            add(new JLabel("총 인원 수 <MAX = 40>"), BorderLayout.NORTH);
