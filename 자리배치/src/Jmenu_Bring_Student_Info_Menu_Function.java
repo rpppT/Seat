@@ -17,8 +17,7 @@ public class Jmenu_Bring_Student_Info_Menu_Function extends JFrame implements  S
 	public Jmenu_Bring_Student_Info_Menu_Function() {
 		setTitle("Made by rppt");
 		Main.Screenshot_Menu.setEnabled(false);
-		Main.Assigned_Seat_Menu.setEnabled(false);
-		ScreenShot.Menu.setEnabled(false);	
+		Main.Assigned_Seat_Menu.setEnabled(false);	
 	}
 
 	public int checkButtonUnabled(int size) {
@@ -52,7 +51,6 @@ public class Jmenu_Bring_Student_Info_Menu_Function extends JFrame implements  S
 					ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(open_file));
 
 					Main.Screenshot_Menu.setEnabled(true);
-					ScreenShot.Menu.setEnabled(true);
 					
 					Main.data = (Map<Integer, String>) inputStream.readObject();
 

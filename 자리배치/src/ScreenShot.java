@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -16,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 public class ScreenShot extends JFrame implements Runnable {
 	public static final long serialVersionUID = 1111111111111111111L;// 클래스 버전 아이디
@@ -25,7 +22,6 @@ public class ScreenShot extends JFrame implements Runnable {
 	private static int Screenshot_Count;
 	private final static File file = new File(System.getProperty("user.home") + "/Desktop/Screenshot.gif");
 
-	final static JMenu Menu = new JMenu("문서로 인쇄");
 	final static JMenuBar Menubar = new JMenuBar();
 	
 	final static JMenuItem interrupt_thead = new JMenuItem("thread interrupt");
@@ -63,25 +59,7 @@ public class ScreenShot extends JFrame implements Runnable {
 		thread_menu.add(interrupt_thead);
 		thread_menu.add(dispatch_thread);
 		
-		Menu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				try {
-					File method_file = new File(System.getProperty("user.home") + "\\JavaAppData\\인쇄.jar");
-					if (!method_file.exists()) {
-						JOptionPane.showMessageDialog(null, "문서 인쇄 파일 존재 x");
-						return;
-					} else {
-						Runtime.getRuntime().exec("java -jar " + method_file.getAbsolutePath());
-						return;
-					}
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
 		Menubar.add(thread_menu);
-		Menubar.add(Menu);
 		setJMenuBar(Menubar);
 
 		setPreferredSize(new Dimension(850 - 50, 950 + 50 - 10 - 50 - 10 - 50));
