@@ -1,14 +1,19 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
+
 import javax.swing.JOptionPane;
 
 public class Jmenu_Assigned_Seat_Function {
-	static int font_size = 20; // 공유하는 폰트 크기 정적 변수
+	static int font_size = 15; 
 	static boolean isCanFixed ;
-
+	static int visit_cnt;
+	static Main temp_data;
 	public void Assigend_Seat() {
 		int i;
 		int cnt = 0;
@@ -51,7 +56,9 @@ public class Jmenu_Assigned_Seat_Function {
 			return;
 		}      
 
-		
+//		if(++visit_cnt == 1) {
+//			new Thread(new ClassAutoSave()).start();
+//		}
 		GoToFowardAndBackWard.Save_previous_data();
 		cnt = 0;
 		
@@ -100,11 +107,11 @@ public class Jmenu_Assigned_Seat_Function {
 					Main.button[i].setFont(new Font("test", Font.BOLD, font_size));
 					c.add(randNum);
 					cnt++;
-				} // else
+				} 
 				if (cnt == Main.data.size())
 					break;
 			}
-		} // for
+		} 
 		
 		
 		
@@ -146,5 +153,6 @@ public class Jmenu_Assigned_Seat_Function {
 			isCanFixed = true;
 		else 
 			isCanFixed = false;
-	}
+	
+	 }
 }

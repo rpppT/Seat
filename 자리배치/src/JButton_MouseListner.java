@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -22,9 +23,10 @@ public class JButton_MouseListner extends MouseAdapter implements MouseMotionLis
 			GoToFowardAndBackWard.Save_previous_data();
 			
 			JButton Enabled_Button = (JButton) e.getSource();
-			if (!e.isMetaDown() && Enabled_Button.getBackground() != Color.pink) { // 좌클릭 더블
+			Enabled_Button.setFont(new Font("test", Font.BOLD, Jmenu_Assigned_Seat_Function.font_size));
+			if (!e.isMetaDown() && Enabled_Button.getBackground() != Color.PINK) { // 좌클릭 더블
 				if (Enabled_Button.isEnabled()) {
-					Enabled_Button.setText("비활성화");
+					Enabled_Button.setText("");
 					Enabled_Button.setEnabled(false);
 					Enabled_Button_List.add(Enabled_Button);
 					for (int i = 0; i < Main.button.length; i++) {

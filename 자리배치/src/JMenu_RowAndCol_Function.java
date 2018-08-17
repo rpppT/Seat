@@ -11,13 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 
 public class JMenu_RowAndCol_Function extends JFrame {
-
-	public static final long serialVersionUID = 1111111111111111111L;// 클래스 버전 아이디
+	
+	public static final long serialVersionUID = 1111111111111111111L;
 	final static JButton UnderButton = new JButton("Click!");
 	private String[] seat_m = new String[3];
 
@@ -27,6 +28,9 @@ public class JMenu_RowAndCol_Function extends JFrame {
 
 	static JMenu_RowAndCol_Function this_var;
 
+	static int previous_idx;
+	static int count;
+	
 	public JMenu_RowAndCol_Function() {
 		this_var = this;
 
@@ -40,20 +44,33 @@ public class JMenu_RowAndCol_Function extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				int idx = JMenu_RowAndCol_Function.list.getSelectedIndex();
-
+				
+			
 				if (idx == 0) {
 					Main.row = 5;
 					Main.column = 6;
+					Main.panel = new JPanel[3];
 				} else if (idx == 1) {
 					Main.row = 5;
 					Main.column = 8;
+					Main.panel = new JPanel[4];
 				} else if (idx == 2) {
 					Main.row = 6;
 					Main.column = 6;
+					Main.panel = new JPanel[3]; 
 				}
+				previous_idx = idx;
+				
+				GoToFowardAndBackWard.isModified = true;
+				for(int i = 0 ; i<Main.panel.length; i++) {
+					Main.panel[i] = new JPanel();
+					Main.panel[i].setLayout(new GridLayout(Main.row, 2, 0, 10 ));
+				}
+			
 				Main.button = new JButton[Main.row * Main.column];
-
-				Main.buttonPanel.setLayout(new GridLayout(Main.row, Main.column, 20, 15));
+				
+				
+				Main.buttonPanel.setLayout(new GridLayout(1,Main.panel.length,30,0));
 				Main.buttonPanel.revalidate();
 				Main.buttonPanel.repaint();
 

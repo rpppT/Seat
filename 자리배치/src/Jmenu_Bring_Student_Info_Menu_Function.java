@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
 public class Jmenu_Bring_Student_Info_Menu_Function extends JFrame implements  Serializable{
-	public static final long serialVersionUID = 1111111111111111111L;//클래스 버전 아이디
+	public static final long serialVersionUID = 1111111111111111111L;
 
 	int unabledButtonCount;
 	

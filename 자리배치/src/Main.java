@@ -1,6 +1,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,17 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Main extends JFrame implements Serializable{
-	public static final long serialVersionUID = 1111111111111111111L;//클래스 버전 아이디
+	public static final long serialVersionUID = 1111111111111111111L;
 
 	
-	public static Main main_frame; //Main클래스 객체 참조변수
+	public static Main main_frame; 
 	
-	public static int row , column; // 행, 열
+	public static int row , column; 
 	
-	public static  Map<Integer, String> data = new HashMap<>();//학생 데이터 자료구조 Map
+	public static  Map<Integer, String> data = new HashMap<>();
+	public static  Map<Integer, String> t_data = new HashMap<>();
 	
 	public final static ArrayList<Integer> MouseDraggedDisabledButton = new ArrayList<>();
 	
@@ -43,18 +46,18 @@ public class Main extends JFrame implements Serializable{
 	final static JMenu fontConfig_Menu = new JMenu("폰트 수정");
 	final static JMenu Auxiliary_Menu = new JMenu("보조 기능");
 	
-	final static JMenuBar Menubar = new JMenuBar();//메뉴 객체를 담을 메뉴바 객체
+	final static JMenuBar Menubar = new JMenuBar();
+
+	static JPanel [] panel; 
 	
-    static JButton [] button; //학생 이름을 다음 버튼 배열
+    static JButton [] button; 
     static JMenuItem [] input_item = new JMenuItem[2];
     
-	static  int font_size = 12;//폰트 크기
 	
-	
-	public static int Stu_SetFrame_Count; //StudentSettingFrame 생성자 호출 카운트
+	public static int Student_Frame_Count; 
 
-	public  static JPanel imagePanel = new JPanel();//교탁 image를 담을 패널
-	public  static JPanel buttonPanel = new JPanel();//학생 버튼을 담을 패널
+	public  static JPanel imagePanel = new JPanel();
+	public  static JPanel buttonPanel = new JPanel();
 	
 	public static JMenuItem [] chButton_func = new JMenuItem[4];
 
@@ -62,7 +65,8 @@ public class Main extends JFrame implements Serializable{
 	public static JLabel image_label;
 	
 	final static JButton desk = new JButton("교탁");
-
+	
+	
 	static {
 		new ChangeFont();
 		new View_Task();
@@ -93,7 +97,6 @@ public class Main extends JFrame implements Serializable{
 		Menubar.add(Auxiliary_Menu);
 		
 		
-//		new Thread(new ScreenShot()).start();
 		new ScreenShot();
 		new Student_TextField_Frame();
 		new JMenu_RowAndCol_Function();
@@ -101,18 +104,18 @@ public class Main extends JFrame implements Serializable{
 		new Jmenu_Students_Input_Num();
 		new Jmenu_StudentsFrame();
 	}
-		
+	
 	public Main() {
 		this(new JMenuItem("모든 버튼 활성화"), new JMenuItem("모든 버튼 비활성화")
 			, new JMenuItem("행 * 열 입력"), new JMenuItem("학생 데이터 입력")
 			,new JMenuItem("시스템 정보"), new JMenuItem("CMD"), new JMenuItem("Shutdown"), new JMenuItem("시스템 정보")
-			 ,new JMenuItem("현재 Heap"));
+			 ,new JMenuItem("현재 Heap"), new JMenuItem("fork()"));
 		
 		
 		setTitle("메인 프레임 (Made by rppt)");
 		setLayout(new BorderLayout());
 		setJMenuBar(Menubar);
-		
+
 		Main.main_frame = this;
 	
 		buttonPanel.setPreferredSize(new Dimension(500,600));
@@ -122,22 +125,21 @@ public class Main extends JFrame implements Serializable{
 	    desk.setFont(new Font("test", Font.BOLD, 30));
 	    desk.setBackground(Color.GREEN);
 	    imagePanel.add(desk);
-//	    desk.addActionListener(new Desk_Colorchange());
-	    desk.revalidate();
-	    desk.repaint();
 	    
 	    add(imagePanel, BorderLayout.SOUTH);
 	    add(buttonPanel, BorderLayout.NORTH);
 
+	    setPreferredSize(new Dimension(850-50, 950+50-10-50-10-50));
+	   
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	    setLocation(150, 150);
-	    setPreferredSize(new Dimension(850-50, 950+50-10-50-10-50));
 	    pack();
 		setResizable(false);
 		setVisible(true);
 	}
 	public Main(JMenuItem item1, JMenuItem item2, JMenuItem item3, JMenuItem item4, JMenuItem item5
-			   ,JMenuItem item6, JMenuItem item7, JMenuItem item8, JMenuItem item9) {
+			   ,JMenuItem item6, JMenuItem item7, JMenuItem item8, JMenuItem item9
+			    ,JMenuItem item10) {
 		item1.addActionListener(new JButton_All_SetEnabled_ActoinLisnter());
 		item2.addActionListener(new JButton_All_SetEnabled_ActoinLisnter());
 		
@@ -197,15 +199,25 @@ public class Main extends JFrame implements Serializable{
 			}
 		});
 		
+		
 		Heap_Info heap = new Heap_Info();
 		item9.addActionListener(heap);
 		new Thread(heap).start();
+		
+		item10.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int x = Integer.parseInt(JOptionPane.showInputDialog("process수"));
+				for(int i = 0 ; i < x; i++)
+				  new Main();
+			}
+		});
 		
 		Auxiliary_Menu.add(item6);
 		Auxiliary_Menu.add(item7);
 		Auxiliary_Menu.add(item8);
 		Auxiliary_Menu.add(item9);
-		
+		Auxiliary_Menu.add(item10);		
 		
 		chButton_func[0] = item1;
 		chButton_func[1] = item2;

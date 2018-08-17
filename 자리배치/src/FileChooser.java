@@ -7,9 +7,9 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
 public class FileChooser implements Serializable{
-	public static final long serialVersionUID = 1111111111111111111L;//클래스 버전 아이디
+	public static final long serialVersionUID = 1111111111111111111L;
 
-	public static FileChooser filechooser;//FileChooser클래스 참조변수
+	public static FileChooser filechooser;
 	
 	public FileChooser() {
 		filechooser = this;

@@ -23,14 +23,14 @@ public class Jmenu_Students_Input_Num  extends JFrame{
 	final static JScrollPane scroll = new JScrollPane(list);
 	final static Border border = BorderFactory.createTitledBorder("인원선택");
 	
-	static int cnt_constrcter;//생성자 호출 카운트
+	static int cnt_constrcter;
 	static Jmenu_Students_Input_Num s_input;
 	static int total;
 	
 	int total_people;
 	
 	
-    final static Integer[] population = new Integer[16]; /* max == 40 */
+    final static Integer[] population = new Integer[16]; 
     
 	public void  settingPs() {
 		for(int i=0; i<population.length; i++)
@@ -57,7 +57,7 @@ public class Jmenu_Students_Input_Num  extends JFrame{
 		});
 		   add(completeInput,BorderLayout.SOUTH);
 		   scroll.setViewportView(list);
-           scroll.setBorder(border); //경계 설정
+           scroll.setBorder(border); 
            scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //가로바정책
 
            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -34,11 +34,20 @@ public class Heap_Info extends JFrame implements ActionListener, Runnable{
 		ArrayList<JButton []> backward_list = new ArrayList<>(backStack);
 		
 		Iterator<JButton[]> iter_list = foward_list.iterator();
+		String hexAddr;
+		String tempAddr;
 		
 		textArea.append("Foward - Stack\n");
 		textArea.setCaretPosition(textArea.getDocument().getLength());
 		while(iter_list.hasNext()) {
-			textArea.append(iter_list.next().toString()+"\n");
+			tempAddr = "0x";
+			hexAddr = iter_list.next().toString();
+			hexAddr = hexAddr.substring(hexAddr.indexOf("@")+1, hexAddr.length());
+			tempAddr += hexAddr;
+			hexAddr = tempAddr;
+			hexAddr += "["+hexAddr.substring(hexAddr.indexOf("x")+1, hexAddr.length()).length()/2+"bytes"+"]";
+			
+			textArea.append(hexAddr+"\n");
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
 		textArea.append("\n");
@@ -49,7 +58,14 @@ public class Heap_Info extends JFrame implements ActionListener, Runnable{
 		textArea.setCaretPosition(textArea.getDocument().getLength());
 	    iter_list = backward_list.iterator();
 		while(iter_list.hasNext()) {
-			textArea.append(iter_list.next().toString()+"\n");
+			tempAddr = "0x";
+			hexAddr = iter_list.next().toString();
+			hexAddr = hexAddr.substring(hexAddr.indexOf("@")+1, hexAddr.length());
+			tempAddr += hexAddr;
+			hexAddr = tempAddr;
+			hexAddr += "["+hexAddr.substring(hexAddr.indexOf("x")+1, hexAddr.length()).length()/2+"bytes"+"]";
+			
+			textArea.append(hexAddr+"\n");
 			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
 		textArea.append("\n");
@@ -68,7 +84,6 @@ public class Heap_Info extends JFrame implements ActionListener, Runnable{
 				update();
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

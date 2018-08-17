@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -70,7 +73,6 @@ public class ScreenShot extends JFrame implements Runnable {
 
 	public void takeScreenshot() {
 		try {
-
 			Robot robot = new Robot();
 			BufferedImage bi = robot.createScreenCapture(new Rectangle(Main.main_frame.getX(), Main.main_frame.getY(),
 					Main.main_frame.getWidth(), Main.main_frame.getHeight()));
@@ -89,6 +91,7 @@ public class ScreenShot extends JFrame implements Runnable {
 				getContentPane().add(label);
 			}
 
+			
 			revalidate();
 			repaint();
 
@@ -98,6 +101,7 @@ public class ScreenShot extends JFrame implements Runnable {
 				revalidate();
 				repaint();
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
